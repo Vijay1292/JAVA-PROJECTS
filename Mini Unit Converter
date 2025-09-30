@@ -1,0 +1,84 @@
+import java.util.Scanner;
+
+public class MiniUnitConverter {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("\n=== Mini Unit Converter ===");
+        System.out.println("1. Kilometers to Miles");
+        System.out.println("2. Miles to Kilometers");
+        System.out.println("3. Celsius to Fahrenheit");
+        System.out.println("4. Fahrenheit to Celsius");
+        System.out.println("5. Kilograms to Pounds");
+        System.out.println("6. Pounds to Kilograms");
+        System.out.print("Choose an option (1-6): ");
+
+        int choice = getValidatedInteger(scanner);
+
+        switch (choice) {
+            case 1:
+                System.out.print("Enter kilometers: ");
+                double km = getValidatedDouble(scanner);
+                System.out.printf("%.2f km = %.2f miles\n", km, km * 0.621371);
+                break;
+
+            case 2:
+                System.out.print("Enter miles: ");
+                double miles = getValidatedDouble(scanner);
+                System.out.printf("%.2f miles = %.2f km\n", miles, miles / 0.621371);
+                break;
+
+            case 3:
+                System.out.print("Enter Celsius: ");
+                double celsius = getValidatedDouble(scanner);
+                System.out.printf("%.2f °C = %.2f °F\n", celsius, (celsius * 9 / 5) + 32);
+                break;
+
+            case 4:
+                System.out.print("Enter Fahrenheit: ");
+                double fahrenheit = getValidatedDouble(scanner);
+                System.out.printf("%.2f °F = %.2f °C\n", fahrenheit, (fahrenheit - 32) * 5 / 9);
+                break;
+
+            case 5:
+                System.out.print("Enter kilograms: ");
+                double kg = getValidatedDouble(scanner);
+                System.out.printf("%.2f kg = %.2f lbs\n", kg, kg * 2.20462);
+                break;
+
+            case 6:
+                System.out.print("Enter pounds: ");
+                double pounds = getValidatedDouble(scanner);
+                System.out.printf("%.2f lbs = %.2f kg\n", pounds, pounds / 2.20462);
+                break;
+
+            default:
+                System.out.println("Invalid choice. Please run the program again with a valid option.");
+        }
+
+        scanner.close();
+    }
+
+    
+    private static int getValidatedInteger(Scanner scanner) {
+        while (true) {
+            try {
+                return Integer.parseInt(scanner.next().trim());
+            } catch (NumberFormatException e) {
+                System.out.print("Invalid input. Please enter a number (1-6): ");
+            }
+        }
+    }
+
+    
+    private static double getValidatedDouble(Scanner scanner) {
+        while (true) {
+            try {
+                return Double.parseDouble(scanner.next().trim());
+            } catch (NumberFormatException e) {
+                System.out.print("Invalid input. Please enter a valid number: ");
+            }
+        }
+    }
+}
